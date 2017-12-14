@@ -16,23 +16,38 @@ CREATE TABLE Exam (
 CREATE TABLE Questions (
     question_id INT NOT NULL,
     exam_name VARCHAR(20) NOT NULL,
-    correct_choice VARCHAR(4) NOT NULL,
+    correct_choice VARCHAR(4),
     points INT NOT NULL,
     text VARCHAR(512) NOT NULL,
-    PRIMARY KEY(question_id, exam_name));
+    PRIMARY KEY(question_id, exam_name),
+    FOREIGN KEY (exam_name) REFERENCES Exam(name)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE);
 
 CREATE TABLE Choices (
     choice_id VARCHAR(4) NOT NULL,
     text VARCHAR(512) NOT NULL,
     question_id INT NOT NULL,
     exam_name VARCHAR(20) NOT NULL,
-    PRIMARY KEY(choice_id, question_id, exam_name));
+    PRIMARY KEY(choice_id, question_id, exam_name),
+    FOREIGN KEY (question_id) REFERENCES Questions(question_id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    FOREIGN KEY (exam_name) REFERENCES Exam(name)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE);
 
 CREATE TABLE Takes (
     student_id INT NOT NULL,
     exam_name VARCHAR(20) NOT NULL,
     grade INT NOT NULL,
-    PRIMARY KEY (student_id, exam_name));
+    PRIMARY KEY (student_id, exam_name),
+    FOREIGN KEY (student_id) REFERENCES Student(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    FOREIGN KEY (exam_name) REFERENCES Exam(name)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE);
 
 CREATE TABLE Answers (
     student_id INT NOT NULL,
@@ -40,5 +55,14 @@ CREATE TABLE Answers (
     question_id INT NOT NULL,
     student_choice INT,
     score INT NOT NULL,
-    PRIMARY KEY (student_id, exam_name, question_id));
+    PRIMARY KEY (student_id, exam_name, question_id),
+    FOREIGN KEY (student_id) REFERENCES Student(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES Questions(question_id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    FOREIGN KEY (exam_name) REFERENCES Exam(name)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE);
 
