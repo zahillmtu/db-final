@@ -1,6 +1,5 @@
 <html> 
 <body> 
-<h1>Learning to use php</h1> 
 <?php include('connect.php'); connect(); ?> 
 
 <p>Try to log in with one of the logins</p>

@@ -1,4 +1,4 @@
-<?php include("connect.php");
+<?php include("connect.php"); 
     
     $dbh = connect();
 
@@ -43,6 +43,5 @@
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
-
 
 ?>

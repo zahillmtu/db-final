@@ -1,4 +1,4 @@
-<?php include("connect.php");
+<?php include("connect.php"); include("show.php");
 
     $dbh = connect();
 
@@ -42,15 +42,9 @@
                                 ':exam' => $exam,
                                 ':sid' => $_SESSION['student_id']));
 
-        // show the scrore they received
-        $score_sql = "SELECT total_points FROM Exam WHERE name = :exam_name";
-        $stmt = $dbh->prepare($score_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $stmt->execute(array(':exam_name' => $exam));
-        $results = $stmt->fetchAll();
-        echo '<br /> You scored '. $total_score . ' out of ' . $results[0]["total_points"] . ' points.';
-
-
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
+
+    show($dbh, $exam);
 ?>

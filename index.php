@@ -1,6 +1,6 @@
 <html>
 <body>
-  <h1>Log in with creds to access database</h1>
+  <h1>Log in with the cs3425gr credentials to access database</h1>
 
   <form action="select.php" method="post">
     <label for="username">Username:</label>
