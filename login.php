@@ -36,21 +36,46 @@
         {
             echo '<br /> User '. $user . ' has no exams.';
             die();
-        }
+        } 
+        $num_exams = 0;
         echo '<form action="take_exam.php" method="post">';
         for ($i = 0; $i < count($results); $i++)
         {
             if (is_null($results[$i]["grade"])) {
                 echo '<br /> <input type="radio" name="exam" value= "' . $results[$i]["exam_name"] . '"/>';
                 echo ' ' . $results[$i]["exam_name"];
+                $num_exams = $num_exams + 1;
             }
         }
-        echo '<br /><input type="submit" value="Take Selected Exam">';
+        if ($num_exams != 0)
+        {
+            echo '<br /><input type="submit" value="Take Selected Exam">';
+        }
+        echo '</form>';
+        
+        echo '<hr>';
+
+        echo '<br />';
+
+        // give option to print out exam results
+        $num_exams = 0;
+        echo '<form action="show_results.php" method="post">';
+        for ($i = 0; $i < count($results); $i++)
+        {
+            if (! is_null($results[$i]["grade"])) {
+                echo '<br /> <input type="radio" name="exam" value= "' . $results[$i]["exam_name"] . '"/>';
+                echo ' ' . $results[$i]["exam_name"];
+                $num_exams = $num_exams + 1;
+            }
+        }
+        if ($num_exams != 0)
+        {
+            echo '<br /><input type="submit" value="View Exam results">';
+        }
         echo '</form>';
 
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
     
-
 ?>

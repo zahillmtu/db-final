@@ -4,10 +4,10 @@ function connect()
     session_start();
 
     if(! isset($_SESSION['username'])) {
-        $_SESSION['username'] = $_POST["username"];
+        $_SESSION['username'] = $_POST['username'];
     }
     if(! isset($_SESSION['password'])) {
-        $_SESSION['password'] = $_POST["password"];
+        $_SESSION['password'] = $_POST['password'];
     }
 
     try {
