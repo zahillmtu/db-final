@@ -53,7 +53,7 @@ CREATE TABLE Answers (
     student_id INT NOT NULL,
     exam_name VARCHAR(20) NOT NULL,
     question_id INT NOT NULL,
-    student_choice INT,
+    student_choice VARCHAR(4),
     score INT NOT NULL,
     PRIMARY KEY (student_id, exam_name, question_id),
     FOREIGN KEY (student_id) REFERENCES Student(id)
