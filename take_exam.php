@@ -5,9 +5,7 @@
     try {
 
         $exam = $_POST["exam"];
-        if(! isset($_SESSION['exam'])) {
-            $_SESSION['exam'] = $exam;
-        }
+        $_SESSION['exam'] = $exam;
 
         echo 'Exam: ' . $exam . '<br />';
 
