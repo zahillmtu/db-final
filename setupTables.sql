@@ -40,7 +40,7 @@ CREATE TABLE Choices (
 CREATE TABLE Takes (
     student_id INT NOT NULL,
     exam_name VARCHAR(20) NOT NULL,
-    grade INT NOT NULL,
+    grade INT,
     PRIMARY KEY (student_id, exam_name),
     FOREIGN KEY (student_id) REFERENCES Student(id)
     ON UPDATE CASCADE

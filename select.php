@@ -1,9 +1,7 @@
 <html> 
 <body> 
 <h1>Learning to use php</h1> 
-<?php include("connect.php");
-callSelect();
-?> 
+<?php include("connect.php"); ?> 
 
 <p>Try to log in with one of the logins</p>
 
@@ -17,17 +15,4 @@ callSelect();
 
 </body> 
 </html>
-
-<?php 
-
-function callSelect()
-{
-    $dbh = connect();
-    
-    foreach ($dbh->query("SELECT * FROM User") as $row) {
-        echo $row[0]." ".$row[1];
-        echo "<br />";
-    }
-}
-?>
 
